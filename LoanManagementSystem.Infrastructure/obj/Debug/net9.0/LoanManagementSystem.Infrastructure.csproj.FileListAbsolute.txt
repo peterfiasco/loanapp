@@ -1,0 +1,17 @@
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\bin\Debug\net9.0\LoanManagementSystem.Infrastructure.deps.json
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\bin\Debug\net9.0\LoanManagementSystem.Infrastructure.runtimeconfig.json
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\bin\Debug\net9.0\LoanManagementSystem.Infrastructure.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\bin\Debug\net9.0\LoanManagementSystem.Infrastructure.pdb
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\bin\Debug\net9.0\LoanManagementSystem.Core.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\bin\Debug\net9.0\LoanManagementSystem.Core.pdb
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.AssemblyInfo.cs
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanMana.393185F0.Up2Date
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\refint\LoanManagementSystem.Infrastructure.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.pdb
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.genruntimeconfig.cache
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\ref\LoanManagementSystem.Infrastructure.dll

@@ -1,0 +1,125 @@
+@page "/loan-applications"
+@using LoanManagementSystem.Core.Interfaces
+@using LoanManagementSystem.Core.Models
+@inject ILoanApplicationService LoanService
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<h3>Loan Applications</h3>
+
+<div class="mb-3">
+    <a href="/loan-applications/create" class="btn btn-primary">Create New Application</a>
+</div>
+
+@if (loans == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (!loans.Any())
+{
+    <p>No loan applications found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Applicant Name</th>
+                <th>Amount</th>
+                <th>Term (Months)</th>
+                <th>Interest Rate</th>
+                <th>Status</th>
+                <th>Application Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loan in loans)
+            {
+                <tr>
+                    <td>@loan.Id</td>
+                    <td>@loan.ApplicantName</td>
+                    <td>@loan.LoanAmount.ToString("C")</td>
+                    <td>@loan.LoanTerm</td>
+                    <td>@loan.InterestRate%</td>
+                    <td>
+                        <span class="badge @GetStatusBadgeClass(loan.LoanStatus)">
+                            @loan.LoanStatus
+                        </span>
+                    </td>
+                    <td>@loan.ApplicationDate.ToShortDateString()</td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="/loan-applications/edit/@loan.Id" class="btn btn-sm btn-info">Edit</a>
+                            @if (loan.LoanStatus == LoanStatus.Pending)
+                            {
+                                <button @onclick="() => ApproveLoan(loan.Id)" class="btn btn-sm btn-success">Approve</button>
+                                <button @onclick="() => RejectLoan(loan.Id)" class="btn btn-sm btn-warning">Reject</button>
+                            }
+                            <button @onclick="() => DeleteLoan(loan.Id)" class="btn btn-sm btn-danger">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<LoanApplication>? loans;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLoans();
+    }
+
+    private async Task LoadLoans()
+    {
+        loans = await LoanService.GetAllLoanApplicationsAsync();
+    }
+
+    private async Task ApproveLoan(int id)
+    {
+        if (!await ConfirmAction("Are you sure you want to approve this loan application?"))
+            return;
+
+        await LoanService.ApproveLoanAsync(id);
+        await LoadLoans();
+    }
+
+    private async Task RejectLoan(int id)
+    {
+        if (!await ConfirmAction("Are you sure you want to reject this loan application?"))
+            return;
+
+        await LoanService.RejectLoanAsync(id);
+        await LoadLoans();
+    }
+
+    private async Task DeleteLoan(int id)
+    {
+        if (!await ConfirmAction("Are you sure you want to delete this loan application? This action cannot be undone."))
+            return;
+
+        await LoanService.DeleteLoanApplicationAsync(id);
+        await LoadLoans();
+    }
+
+    private string GetStatusBadgeClass(LoanStatus status)
+    {
+        return status switch
+        {
+            LoanStatus.Approved => "bg-success",
+            LoanStatus.Rejected => "bg-danger",
+            LoanStatus.Pending => "bg-warning",
+            _ => "bg-secondary"
+        };
+    }
+
+    private Task<bool> ConfirmAction(string message)
+    {
+        // In a real app, you'd use a confirmation dialog component
+        return Task.FromResult(true);
+    }
+}

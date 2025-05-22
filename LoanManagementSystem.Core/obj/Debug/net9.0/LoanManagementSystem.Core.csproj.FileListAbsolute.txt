@@ -1,0 +1,11 @@
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\bin\Debug\net9.0\LoanManagementSystem.Core.deps.json
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\bin\Debug\net9.0\LoanManagementSystem.Core.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\bin\Debug\net9.0\LoanManagementSystem.Core.pdb
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanManagementSystem.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanManagementSystem.Core.AssemblyInfoInputs.cache
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanManagementSystem.Core.AssemblyInfo.cs
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanManagementSystem.Core.csproj.CoreCompileInputs.cache
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanManagementSystem.Core.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\refint\LoanManagementSystem.Core.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanManagementSystem.Core.pdb
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\ref\LoanManagementSystem.Core.dll
