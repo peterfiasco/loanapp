@@ -5,52 +5,133 @@
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
-<h3>Create New Loan Application</h3>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white py-3">
+                    <h3 class="mb-0">
+                        <i class="fas fa-plus-circle me-2"></i>Create New Loan Application
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    @if (isSubmitting)
+                    {
+                        <div class="text-center my-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Submitting...</span>
+                            </div>
+                            <p class="mt-2">Creating loan application...</p>
+                        </div>
+                    }
+                    else
+                    {
+                        @if (!string.IsNullOrEmpty(errorMessage))
+                        {
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="fas fa-exclamation-circle me-2"></i> @errorMessage
+                                <button type="button" class="btn-close" @onclick="() => errorMessage = null"></button>
+                            </div>
+                        }
 
-<div class="row">
-    <div class="col-md-6">
-        <EditForm Model="@model" OnValidSubmit="HandleValidSubmit" FormName="createLoanForm">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
+                        <EditForm Model="@model" OnValidSubmit="HandleValidSubmit" FormName="createLoanForm">
+                            <DataAnnotationsValidator />
 
-            <div class="mb-3">
-                <label for="applicantName" class="form-label">Applicant Name</label>
-                <InputText id="applicantName" @bind-Value="model.ApplicantName" class="form-control" />
-                <ValidationMessage For="@(() => model.ApplicantName)" />
+                            <div class="row g-3">
+                                <div class="col-md-12 mb-3">
+                                    <label for="applicantName" class="form-label">Applicant Name</label>
+                                    <InputText id="applicantName" class="form-control" @bind-Value="model.ApplicantName" />
+                                    <ValidationMessage For="@(() => model.ApplicantName)" class="validation-message" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="loanAmount" class="form-label">Loan Amount ($)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">$</span>
+                                        <InputNumber id="loanAmount" class="form-control" @bind-Value="model.LoanAmount" />
+                                    </div>
+                                    <ValidationMessage For="@(() => model.LoanAmount)" class="validation-message" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="loanTerm" class="form-label">Loan Term (months)</label>
+                                    <InputNumber id="loanTerm" class="form-control" @bind-Value="model.LoanTerm" />
+                                    <ValidationMessage For="@(() => model.LoanTerm)" class="validation-message" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label for="interestRate" class="form-label">Interest Rate (%)</label>
+                                    <div class="input-group">
+                                        <InputNumber id="interestRate" class="form-control" @bind-Value="model.InterestRate" step="0.01" />
+                                        <span class="input-group-text">%</span>
+                                    </div>
+                                    <ValidationMessage For="@(() => model.InterestRate)" class="validation-message" />
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Estimated Monthly Payment</label>
+                                    <div class="form-control bg-light">
+                                        @CalculateMonthlyPayment().ToString("C")
+                                    </div>
+                                    <small class="text-muted">Based on current inputs</small>
+                                </div>
+
+                                <div class="col-12 mt-4 d-flex justify-content-between">
+                                    <a href="/loan-applications" class="btn btn-outline-secondary">
+                                        <i class="fas fa-arrow-left me-1"></i> Cancel
+                                    </a>
+                                    <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+                                        <i class="fas fa-check me-1"></i> Submit Application
+                                    </button>
+                                </div>
+                            </div>
+                        </EditForm>
+                    }
+                </div>
             </div>
-
-            <div class="mb-3">
-                <label for="loanAmount" class="form-label">Loan Amount</label>
-                <InputNumber id="loanAmount" @bind-Value="model.LoanAmount" class="form-control" />
-                <ValidationMessage For="@(() => model.LoanAmount)" />
-            </div>
-
-            <div class="mb-3">
-                <label for="loanTerm" class="form-label">Loan Term (Months)</label>
-                <InputNumber id="loanTerm" @bind-Value="model.LoanTerm" class="form-control" />
-                <ValidationMessage For="@(() => model.LoanTerm)" />
-            </div>
-
-            <div class="mb-3">
-                <label for="interestRate" class="form-label">Interest Rate (%)</label>
-                <InputNumber id="interestRate" @bind-Value="model.InterestRate" class="form-control" />
-                <ValidationMessage For="@(() => model.InterestRate)" />
-            </div>
-
-            <div class="mb-3">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a href="/loan-applications" class="btn btn-secondary">Cancel</a>
-            </div>
-        </EditForm>
+        </div>
     </div>
 </div>
 
 @code {
     private LoanApplication model = new();
+    private bool isSubmitting = false;
+    private string? errorMessage = null;
 
     private async Task HandleValidSubmit()
     {
-        await LoanService.CreateLoanApplicationAsync(model);
-        NavigationManager.NavigateTo("/loan-applications");
+        try
+        {
+            isSubmitting = true;
+            errorMessage = null;
+            StateHasChanged();
+            
+            await LoanService.CreateLoanApplicationAsync(model);
+            
+            // Force a delay to ensure server processing completes
+            await Task.Delay(500);
+            
+            // Use absolute path to ensure proper navigation
+            NavigationManager.NavigateTo("/loan-applications", forceLoad: true);
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error creating loan application: {ex.Message}";
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
+
+    private decimal CalculateMonthlyPayment()
+    {
+        if (model.LoanAmount <= 0 || model.LoanTerm <= 0 || model.InterestRate <= 0)
+            return 0;
+
+        // Simple monthly payment calculation (P * r * (1+r)^n) / ((1+r)^n - 1)
+        decimal monthlyRate = model.InterestRate / 100 / 12;
+        decimal termInMonths = model.LoanTerm;
+        decimal factor = (decimal)Math.Pow(1 + (double)monthlyRate, (double)termInMonths);
+        
+        return model.LoanAmount * monthlyRate * factor / (factor - 1);
     }
 }

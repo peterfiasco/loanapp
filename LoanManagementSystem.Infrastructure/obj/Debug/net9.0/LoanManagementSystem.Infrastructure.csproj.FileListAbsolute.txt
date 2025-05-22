@@ -15,3 +15,4 @@ C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net
 C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.pdb
 C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.genruntimeconfig.cache
 C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\ref\LoanManagementSystem.Infrastructure.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Infrastructure\obj\Debug\net9.0\LoanManagementSystem.Infrastructure.sourcelink.json

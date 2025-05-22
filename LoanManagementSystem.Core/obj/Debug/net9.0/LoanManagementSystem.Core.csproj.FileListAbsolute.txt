@@ -9,3 +9,4 @@ C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanMa
 C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\refint\LoanManagementSystem.Core.dll
 C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanManagementSystem.Core.pdb
 C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\ref\LoanManagementSystem.Core.dll
+C:\Users\fiasco\Downloads\loan\LoanManagementSystem.Core\obj\Debug\net9.0\LoanManagementSystem.Core.sourcelink.json

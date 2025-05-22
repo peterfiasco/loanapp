@@ -9,29 +9,28 @@ main {
 }
 
 .sidebar {
-    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    background-color: var(--card-color);
+    box-shadow: var(--box-shadow);
 }
 
 .top-row {
-    background-color: #f7f7f7;
-    border-bottom: 1px solid #d6d5d5;
-    justify-content: flex-end;
+    background-color: var(--card-color);
+    border-bottom: 1px solid #e2e8f0;
     height: 3.5rem;
     display: flex;
     align-items: center;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        white-space: nowrap;
+    .top-row ::deep a {
         margin-left: 1.5rem;
-        text-decoration: none;
     }
 
     .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
         text-decoration: underline;
     }
 
-    .top-row ::deep a:first-child {
+    .top-row a:first-child {
         overflow: hidden;
         text-overflow: ellipsis;
     }
@@ -41,7 +40,7 @@ main {
         justify-content: space-between;
     }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
+    .top-row a {
         margin-left: 0;
     }
 }
@@ -72,27 +71,28 @@ main {
 
     .top-row, article {
         padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
+        padding-right: 2rem !important;
     }
 }
 
 #blazor-error-ui {
-    color-scheme: light only;
-    background: lightyellow;
+    background-color: var(--danger-color);
+    color: white;
     bottom: 0;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
     display: none;
     left: 0;
-    padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+    padding: 1rem;
     position: fixed;
     width: 100%;
     z-index: 1000;
+    font-weight: 500;
 }
 
     #blazor-error-ui .dismiss {
         cursor: pointer;
         position: absolute;
-        right: 0.75rem;
+        right: 1rem;
         top: 0.5rem;
+        font-size: 1.5rem;
     }
